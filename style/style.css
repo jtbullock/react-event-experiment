@@ -1,0 +1,14 @@
+.task-list-item {
+  border:solid 1px black;
+  padding: 10px 5px;
+  margin-bottom: 1em;
+}
+
+.task-list-item:hover {
+  cursor:pointer;
+  background-color:#ccc;
+}
+
+.task-detail-description {
+  margin-bottom:1em;
+}
