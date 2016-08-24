@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
 import TaskDetail from './components/task-detail';
-import TaskList from './components/task-list';
 import InputToggle from './components/input-toggle';
+import reducers from './reducers';
+import ObTaskList from './containers/ob-task-list';
+import ObTaskDetail from './containers/ob-task-detail';
 
 var taskData = [
   {
@@ -60,8 +64,9 @@ class App extends Component {
       <div>
         <h1>Test App</h1>
         <div className='row'>
-          <TaskList tasks={taskData} onTaskClick={(task) => this.setState({selectedTask: task})} />
-          <TaskDetail task={this.state.selectedTask} />
+          <ObTaskList />
+          <ObTaskDetail />
+
         </div>
       </div>
     );
@@ -69,4 +74,12 @@ class App extends Component {
 
 }
 
-ReactDOM.render(<App />, document.querySelector('.container'));
+
+const createStoreWithMiddleware = applyMiddleware()(createStore);
+
+
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <App />
+  </Provider>,
+  document.querySelector('.container'));

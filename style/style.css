@@ -12,3 +12,7 @@
 .task-detail-description {
   margin-bottom:1em;
 }
+
+.task-list-item-status {
+  color:gray;
+}
