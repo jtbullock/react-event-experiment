@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import DatePicker from 'material-ui/DatePicker';
 
 class ObTaskDetail extends Component {
   render() {
@@ -15,32 +20,41 @@ class ObTaskDetail extends Component {
 
       var controlContent;
 
+      var labelText = property.XTaskContentProperty.propertyLabel + (property.XTaskContentProperty.required ? " (required)" : "");
+
       if(controlType === "DropDown") {
         var options = this.props.selectedTask.contentModel.DropDownData[property.XTaskContentProperty.propertyCode];
 
         var ddOptions = options.map((option) => {
-          return <option value={option.value}>{option.Text}</option>
+          return <MenuItem value={option.value} primaryText={option.Text} />
         });
 
         controlContent = (
-          <select>
+          <SelectField
+            floatingLabelText={labelText}
+            value={null}>
             {ddOptions}
-          </select>
+          </SelectField>
         );
       }
+      else if(controlType === "Date") {
+        controlContent = <DatePicker floatingLabelText={labelText} />
+      }
       else {
-        controlContent = property.XTaskContentProperty.propertyLabel
+        controlContent = <TextField floatingLabelText={labelText} />
       }
 
       return <div key={property.ETaskContentPropertyId}>{controlContent}</div>
     });
 
     return (
-      <div className='task-detail col-md-6'>
-        Responsible ppl: {this.props.selectedTask.contentModel.ResponsibleParty}
+      <Paper style={{'width':600, 'margin':'30 auto', padding:12}}>
+        <h2>{this.props.selectedTask.contentModel.Task.TaskName}</h2>
+
+        Responsible actors: {this.props.selectedTask.contentModel.ResponsibleParty}
 
         {fields}
-      </div>
+      </Paper>
     );
   }
 }

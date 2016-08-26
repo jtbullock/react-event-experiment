@@ -16,3 +16,7 @@
 .task-list-item-status {
   color:gray;
 }
+
+body {
+  margin: 0;
+}

@@ -1,17 +1,20 @@
 import React from 'react';
+import MenuItem from 'material-ui/MenuItem';
 
 var TaskListItem = function(props) {
   const statusText = props.status == 0 ? "Incomplete" : "Complete";
 
   return (
 
-    <div className='task-list-item'>
+    <MenuItem>
       {props.header}
-      <div className='task-list-item-status'>
-        {statusText}
-      </div>
-    </div>
+
+    </MenuItem>
   );
 };
+
+{/*<div className='task-list-item-status'>*/}
+  {/*{statusText}*/}
+{/*</div>*/}
 
 export default TaskListItem;

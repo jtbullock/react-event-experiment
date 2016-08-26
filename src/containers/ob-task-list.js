@@ -20,11 +20,11 @@ class ObTaskList extends Component {
       )
     });
   }
+// <div>OB task list.  Total tasks: { this.props.activeEvent.TotalTasks }</div>
 
   render() {
     return (
-      <div className="col-md-3">
-        <div>OB task list.  Total tasks: { this.props.activeEvent.TotalTasks }</div>
+      <div>
         {this.renderList()}
       </div>
     );
